@@ -3,7 +3,7 @@ Very simple shell program that prints the integer exit code of its invocation ar
 
 About     | Current Release
 ----------|-----------------------
-Version   | 1.0
+Version   | 1.0.1
 Date      | September 10, 2022
 Platforms | Windows, macOS, Linux
 
