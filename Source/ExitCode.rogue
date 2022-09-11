@@ -1,0 +1,56 @@
+#================================================================================
+# ExitCode.rogue
+# September 10, 2022
+#================================================================================
+
+$define VERSION "1.0"
+$define DATE    "September 10, 2022"
+
+$requireRogue "2.0.9"
+
+#uses Console/CommandLineParser
+
+try
+  ExitCode( System.command_line_arguments )
+catch (error:Error)
+  Console.error.println error
+  System.exit 1
+endTry
+
+class ExitCode
+  METHODS
+    method init( args:String[] )
+      if (args.is_empty) print_usage; return
+
+      local result = System.run( args.join(' ') )
+      println result
+
+      #{
+      local command = parse_args( args )
+
+      trace command
+      # has //options and possibly //args
+
+      if (command//options//help)
+        print_usage
+        System.exit 0
+      endIf
+
+    method parse_args( args:String[] )->Value
+      local command = CommandLineParser().
+      [
+        option( "--flag",     &alias="-f" )
+        option( "--help",     &aliases=["-h","-?"] )
+        option( "--setting=", &alias="-s" )
+      ].parse( args )
+      return command
+      }#
+
+    method print_usage
+      println "ExitCode v$"(VERSION)
+      println "$ by Abe Pralle"(DATE)
+      println
+
+      println @|USAGE
+               |  exitcode <command> [<args>]
+endClass
