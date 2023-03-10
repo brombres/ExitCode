@@ -3,8 +3,8 @@
 # September 10, 2022
 #================================================================================
 
-$define VERSION "1.0.1"
-$define DATE    "September 10, 2022"
+$define VERSION "1.1"
+$define DATE    "March 9, 2023"
 
 $requireRogue "2.0.9"
 
@@ -48,7 +48,7 @@ class ExitCode
 
     method print_usage
       println "ExitCode v$"(VERSION)
-      println "$ by Abe Pralle"(DATE)
+      println "$ by Brom Bresenham"(DATE)
       println
 
       println @|USAGE
